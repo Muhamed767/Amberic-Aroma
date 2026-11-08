@@ -1,0 +1,76 @@
+backend:
+  name: turbo-github
+  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  branch: main
+
+locale: ru
+site_url: https://muhamed767.github.io/Amberic-Aroma/
+display_url: https://muhamed767.github.io/Amberic-Aroma/
+media_folder: images
+public_folder: images
+
+collections:
+  - name: catalog
+    label: Ароматы
+    description: Управление ароматами, объёмами, ценами и фотографиями.
+    editor:
+      preview: false
+    files:
+      - name: products
+        label: Каталог ароматов
+        file: content/catalog.json
+        fields:
+          - label: Ароматы
+            name: products
+            widget: list
+            add_to_top: true
+            collapsed: true
+            label_singular: аромат
+            summary: '{{fields.brand}} — {{fields.name}}'
+            fields:
+              - { label: ID, name: id, widget: string, hint: 'Уникальный номер. Для нового аромата используйте новый номер.', required: true }
+              - { label: Бренд, name: brand, widget: string, required: true }
+              - { label: Название, name: name, widget: string, required: true }
+              - { label: Описание, name: description, widget: text, required: true }
+              - label: Для кого
+                name: gender
+                widget: select
+                options:
+                  - { label: Мужские, value: men }
+                  - { label: Женские, value: women }
+                  - { label: Унисекс, value: unisex }
+              - { label: Фотография, name: image, widget: image, required: true }
+              - label: Объёмы и цены
+                name: variants
+                widget: list
+                add_to_top: false
+                collapsed: true
+                label_singular: объём
+                summary: '{{fields.ml}} мл — {{fields.price}} ₽'
+                fields:
+                  - { label: Объём, name: ml, widget: number, value_type: int, min: 1, required: true }
+                  - { label: Цена, name: price, widget: number, value_type: int, min: 0, required: true }
+              - { label: Цена за 1 мл, name: pricePerMl, widget: boolean, default: false, required: false }
+              - { label: Доступен, name: available, widget: boolean, default: true, required: false }
+              - label: Статус
+                name: status
+                widget: select
+                required: false
+                default: active
+                options:
+                  - { label: Активен, value: active }
+                  - { label: Скрыт, value: draft }
+                  - { label: Нет в наличии, value: out_of_stock }
+              - { label: Заголовок источника, name: sourceTitle, widget: string, required: false }
+              - { label: Номер публикации, name: sourcePost, widget: number, value_type: int, required: false }
+              - label: Дополнительные медиа
+                name: media
+                widget: list
+                required: false
+                collapsed: true
+                fields:
+                  - label: Тип
+                    name: type
+                    widget: select
+                    options: [image, video]
+                  - { label: Файл или URL, name: url, widget: string }

@@ -1,0 +1,119 @@
+:root {
+  color-scheme: dark;
+  --admin-bg: #17120e;
+  --admin-surface: #211a14;
+  --admin-surface-soft: #2b2119;
+  --admin-border: rgba(226, 181, 103, .22);
+  --admin-text: #f7f0e7;
+  --admin-muted: #b8a99b;
+  --admin-accent: #d9a85b;
+  --admin-accent-strong: #f0c276;
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  font-family: 'Fira Sans', system-ui, sans-serif;
+}
+
+button, input, textarea, select { font: inherit; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+:focus-visible {
+  outline: 2px solid var(--admin-accent-strong);
+  outline-offset: 3px;
+}
+
+.admin-loading {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+  padding: 32px 20px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(217, 168, 91, .14), transparent 34%),
+    linear-gradient(145deg, #17120e 0%, #20170f 100%);
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+.admin-loading.is-ready {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.admin-loading__mark {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border: 1px solid var(--admin-border);
+  border-radius: 50%;
+  color: var(--admin-accent-strong);
+  font: 600 22px 'Fira Code', monospace;
+  box-shadow: 0 0 0 8px rgba(217, 168, 91, .05);
+}
+
+.admin-loading__eyebrow {
+  margin: 0 0 12px;
+  color: var(--admin-accent);
+  font: 600 11px/1.4 'Fira Code', monospace;
+  letter-spacing: .16em;
+}
+
+.admin-loading h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: -.03em;
+}
+
+.admin-loading p:not(.admin-loading__eyebrow) {
+  max-width: 440px;
+  margin: 16px auto 0;
+  color: var(--admin-muted);
+  line-height: 1.6;
+}
+
+.admin-loading__line {
+  width: min(240px, 70vw);
+  height: 2px;
+  margin-top: 30px;
+  overflow: hidden;
+  background: rgba(255,255,255,.1);
+}
+
+.admin-loading__line span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  background: var(--admin-accent);
+  animation: admin-progress 1.2s ease-in-out infinite;
+}
+
+@keyframes admin-progress {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(340%); }
+}
+
+/* Decap CMS surface: keep the editor aligned with the Amberic visual language. */
+#nc-root, [data-testid='nc-root'] {
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

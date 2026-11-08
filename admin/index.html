@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17120e">
+    <title>AMBERIC AROMA · Управление каталогом</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <div class="admin-loading" id="admin-loading" role="status" aria-live="polite">
+      <div class="admin-loading__mark" aria-hidden="true">A</div>
+      <p class="admin-loading__eyebrow">AMBERIC AROMA · ADMIN</p>
+      <h1>Управление каталогом</h1>
+      <p>Загружаем защищённую панель. Войти смогут только приглашённые пользователи.</p>
+      <div class="admin-loading__line"><span></span></div>
+    </div>
+    <script>
+      window.addEventListener('load', function () {
+        window.setTimeout(function () {
+          var loading = document.getElementById('admin-loading');
+          if (loading) loading.classList.add('is-ready');
+        }, 800);
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.17.0/dist/decap-cms.js"></script>
+  </body>
+</html>
