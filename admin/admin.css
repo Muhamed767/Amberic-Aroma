@@ -51,6 +51,32 @@ button, a { -webkit-tap-highlight-color: transparent; }
   inset: 0;
 }
 
+.admin-loading.is-setup {
+  align-content: center;
+}
+
+.admin-loading__link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 0 20px;
+  border: 1px solid var(--admin-accent);
+  border-radius: 999px;
+  color: #20160d;
+  background: var(--admin-accent-strong);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.admin-loading__link:hover {
+  color: #20160d;
+  background: #f6d193;
+  transform: translateY(-1px);
+}
+
 .admin-loading__mark {
   width: 58px;
   height: 58px;

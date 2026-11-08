@@ -15,17 +15,28 @@
       <div class="admin-loading__mark" aria-hidden="true">A</div>
       <p class="admin-loading__eyebrow">AMBERIC AROMA · ADMIN</p>
       <h1>Управление каталогом</h1>
-      <p>Загружаем защищённую панель. Войти смогут только приглашённые пользователи.</p>
+      <p id="admin-message">Загружаем защищённую панель. Войти смогут только приглашённые пользователи.</p>
+      <a class="admin-loading__link" id="admin-setup-link" href="https://decapcms.org/turbo/" target="_blank" rel="noopener noreferrer" hidden>Подключить авторизацию ↗</a>
       <div class="admin-loading__line"><span></span></div>
     </div>
     <script>
-      window.addEventListener('load', function () {
-        window.setTimeout(function () {
-          var loading = document.getElementById('admin-loading');
-          if (loading) loading.classList.add('is-ready');
-        }, 800);
-      });
+      (function () {
+        var siteId = 'REPLACE_WITH_DECAP_TURBO_SITE_ID';
+        var loading = document.getElementById('admin-loading');
+        var message = document.getElementById('admin-message');
+        var setupLink = document.getElementById('admin-setup-link');
+        var ready = siteId && siteId.indexOf('REPLACE_WITH_') !== 0;
+        if (!ready) {
+          loading.classList.add('is-setup');
+          message.textContent = 'Страница админки готова. Осталось один раз подключить бесплатную авторизацию Decap Turbo — после этого здесь появится вход и редактор ароматов.';
+          setupLink.hidden = false;
+          return;
+        }
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/decap-cms@^3.17.0/dist/decap-cms.js';
+        document.body.appendChild(script);
+        window.setTimeout(function () { loading.classList.add('is-ready'); }, 800);
+      }());
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.17.0/dist/decap-cms.js"></script>
   </body>
 </html>
