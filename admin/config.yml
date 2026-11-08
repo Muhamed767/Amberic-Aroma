@@ -1,6 +1,6 @@
 backend:
   name: turbo-github
-  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  turbo_site_id: 0d00a4ad-eb1b-4c00-914b-8d2410dc021d
   branch: main
 
 locale: ru
