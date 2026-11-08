@@ -1,6 +1,15 @@
 'use strict';
 (async function startStore(){
-const snapshot={products:window.CATALOG,settings:{"heroTitle":"Искусство быть собой.","heroDescription":"Ароматы, которые становятся частью вас. Знакомьтесь с парфюмерией в своём объёме.","phone":"+7 988 932-80-70","address":"Баксан, Донбасская, 8 (Катханова)","hours":"9:00–18:00","whatsapp":"79889328070","telegram":"https://t.me/+reNrZohGNBI5NGYy","instagram":"https://www.instagram.com/amberic.aroma/","showTelegram":true,"showInstagram":false,"delivery":"Отправка по России. Способ доставки, стоимость и сроки согласуются с продавцом до оплаты.","seller":"","email":"","purchaseTerms":"","privacyText":"","returnsText":"","heroMedia":"images/hero.png","heroMediaType":"image"}};
+let catalog=window.CATALOG;
+try{
+  const response=await fetch('content/catalog.json',{cache:'no-store'});
+  if(response.ok){
+    const data=await response.json();
+    if(Array.isArray(data))catalog=data;
+    if(Array.isArray(data.products))catalog=data.products;
+  }
+}catch{}
+const snapshot={products:catalog,settings:{"heroTitle":"Искусство быть собой.","heroDescription":"Ароматы, которые становятся частью вас. Знакомьтесь с парфюмерией в своём объёме.","phone":"+7 988 932-80-70","address":"Баксан, Донбасская, 8 (Катханова)","hours":"9:00–18:00","whatsapp":"79889328070","telegram":"https://t.me/+reNrZohGNBI5NGYy","instagram":"https://www.instagram.com/amberic.aroma/","showTelegram":true,"showInstagram":false,"delivery":"Отправка по России. Способ доставки, стоимость и сроки согласуются с продавцом до оплаты.","seller":"","email":"","purchaseTerms":"","privacyText":"","returnsText":"","heroMedia":"images/hero.png","heroMediaType":"image"}};
 const settings=snapshot.settings;
 const products=snapshot.products, $=s=>document.querySelector(s), money=n=>new Intl.NumberFormat('ru-RU').format(n)+' ₽';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
